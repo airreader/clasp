@@ -16,7 +16,7 @@ import {readFileSync} from 'fs';
 import os from 'os';
 import path from 'path';
 import Debug from 'debug';
-import {GoogleAuth, OAuth2Client} from 'google-auth-library';
+import {GoogleAuth, OAuth2Client, AuthClient} from 'google-auth-library';
 import {google} from 'googleapis';
 import {AuthorizationCodeFlow} from './auth_code_flow.js';
 import {CredentialStore} from './credential_store.js';
@@ -246,7 +246,7 @@ export async function createApplicationDefaultCredentials() {
   }).getClient();
   // Remove this check after https://github.com/googleapis/google-auth-library-nodejs/issues/1677 fixed
   if (defaultCreds instanceof AuthClient) {
-    debug('Created service account credentials, id: %s', defaultCreds._clientId);
+    debug('Created AuthClient');
     return defaultCreds as OAuth2Client;
   }
   return undefined;
