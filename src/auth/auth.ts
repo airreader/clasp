@@ -245,7 +245,7 @@ export async function createApplicationDefaultCredentials() {
     ],
   }).getClient();
   // Remove this check after https://github.com/googleapis/google-auth-library-nodejs/issues/1677 fixed
-  if (defaultCreds instanceof OAuth2Client) {
+  if (defaultCreds instanceof AuthClient) {
     debug('Created service account credentials, id: %s', defaultCreds._clientId);
     return defaultCreds as OAuth2Client;
   }
